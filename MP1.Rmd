@@ -28,7 +28,7 @@ library(sds192)
 ## Section 1
 
 ```{r}
-mtcars
+a
 ```
 
 
