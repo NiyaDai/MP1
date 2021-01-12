@@ -23,17 +23,16 @@ knitr::opts_chunk$set(
 )
 library(tidyverse)
 library(sds192)
+library(ggthemes)
+library(RColorBrewer)
 ```
 
-## Section 1
-#Data Frame 
+# 
+## Data Frame 
 ```{r}
 diamonds
 ```
-```{r}
-library(RColorBrewer)
-display.brewer.all()
-```
+
 
 #Box plot 
 ```{r}
@@ -58,14 +57,14 @@ diamonds_plot +
 ```{r}
 
 diamonds_plot <- ggplot(data=diamonds, aes(x=carat, y=price, color=cut))+
-  geom_point(
-             size = 0.5)+
-  scale_color_brewer(palette="PuBuGn")+
+  geom_point(size = 0.5) +
+  scale_color_brewer(palette="PuBuGn") +
   labs(title="Prices of over 50,000 round cut diamonds
- by carat and cut")+ 
-  facet_wrap(~clarity, ncol=3)+
-  scale_x_continuous(name="Weight of diomond (carat)")+
+  by carat and cut") + 
+  facet_wrap(~clarity, ncol=3) +
+  scale_x_continuous(name="Weight of diomond (carat)") +
   scale_y_continuous(name="Price of diamonds (US dollars)")
+
 diamonds_plot
 ```
 
@@ -84,14 +83,26 @@ diamonds_plot
 
 ##Dark Theme 1
 ```{r}
-diamonds_plot <- ggplot(data=diamonds, aes(x=carat, y=price))+
+diamonds_plot <- ggplot(data=diamonds, aes(x=carat, y=price)) +
   scale_color_brewer(palette="PuBuGn")+
-  labs(title="Prices of over 50,000 round cut diamonds",color="Clarity from worst to best", xlab(aes(color="white")))+ 
+  labs(title="Prices of over 50,000 round cut diamonds",
+       color="Clarity from worst to best", 
+       xlab(aes(color="white"))) + 
   scale_x_continuous(name="Weight of diomond (carat)")+
   scale_y_continuous(name="Price of diamonds (US dollars)")+
   geom_smooth(aes(color=clarity))+
-  theme(panel.background = element_rect(fill = "#1C1C1D"),plot.background = element_rect(fill = "#1C1C1D"), panel.grid =element_line("#464646"), axis.title = element_text(color="white"), plot.title=element_text(color="white"), legend.background = element_rect(fill = "#1C1C1D", color ="#1C1C1D" ), legend.text = element_text(color = "white"), legend.title = element_text(color = "white"), legend.key = element_rect(fill ="black", color="#1C1C1D"), legend.box.background = element_rect(color = "white"))
+  theme(panel.background = element_rect(fill = "#1C1C1D"),
+        plot.background = element_rect(fill = "#1C1C1D"),
+        panel.grid =element_line("#464646"), 
+        axis.title = element_text(color="white"), 
+        plot.title=element_text(color="white"), 
+        legend.background = element_rect(fill = "#1C1C1D", color ="#1C1C1D" ), 
+        legend.text = element_text(color = "white"), 
+        legend.title = element_text(color = "white"), 
+        legend.key = element_rect(fill ="black", color="#1C1C1D"),
+        legend.box.background = element_rect(color = "white"))
 diamonds_plot
+
 ```
 
 
