@@ -27,8 +27,9 @@ library(ggthemes)
 library(RColorBrewer)
 ```
 
-# 
+# Diamonds are a Girl's (Costly) Friend
 ## Data Frame 
+As we can see from the first 10 rows of the data, diamond value is characterized by the 4c's: carat, cut, color and clarity. Each variable evaluates diamonds from a distinct dimension. From Hollywood tabloid headlines, we seem to think that the bigger the diamond, the more bankroll an actor makes, and perhaps, a happier marriage. However, is that the case? We investigate into other variables that determine a diamond's value, and what it means to have a flawless diamond. 
 ```{r}
 diamonds
 ```
@@ -81,7 +82,8 @@ diamonds_plot <- ggplot(data=diamonds, aes(x=carat, y=price, color=cut))+
 diamonds_plot
 ```
 
-##Dark Theme 1
+## Clarity
+As we can see from the graph, the highest clarity characteristic **IF** can fetch the same price as the lowest **I1** at just over 2 carats. We also see that once we step into the **S** category price increase slows down dramatically. We assume that perfect clarity is a very rare characteristic in natural diamonds. 
 ```{r}
 diamonds_plot <- ggplot(data=diamonds, aes(x=carat, y=price)) +
   scale_color_brewer(palette="PuBuGn")+
@@ -90,7 +92,7 @@ diamonds_plot <- ggplot(data=diamonds, aes(x=carat, y=price)) +
        xlab(aes(color="white"))) + 
   scale_x_continuous(name="Weight of diomond (carat)")+
   scale_y_continuous(name="Price of diamonds (US dollars)")+
-  geom_smooth(aes(color=clarity))+
+  geom_smooth(aes(color=clarity), se = F)+
   theme(panel.background = element_rect(fill = "#1C1C1D"),
         plot.background = element_rect(fill = "#1C1C1D"),
         panel.grid =element_line("#464646"), 
@@ -106,14 +108,15 @@ diamonds_plot
 ```
 
 
-#Light Theme
+# Color
+We color coded diamond color to the line color for an intuitive interpretation. In nature, colorless diamonds are the most rare, so their price are higher per carat. However, from this graph, we see that price actually declines with increasing carat for the most colorless stone, while diamond with a faint tint has the best growth potential. We assume this happens since **D-J** are all on the near colorless to colorless scale, it is hard for the human eye to see the difference. When people are evaluating carat for color grade, they may prefer a larger carat than a premium colorless stone. So we see a steady rise for **J** graded diamonds. 
 ```{r}
 diamonds_plot <- ggplot(data=diamonds, aes(x=carat, y=price))+
   scale_color_brewer(palette="PuBuGn")+
-  labs(title="Prices of over 50,000 round cut diamonds by weight",color="Clarity from worst to best")+
+  labs(title="Prices of over 50,000 round cut diamonds by weight",color="Color from Colorless \nto Near Colorless")+
   scale_x_continuous(name="Weight of diomond (carat)")+
   scale_y_continuous(name="Price of diamonds (US dollars)")+
-  geom_smooth(aes(color=clarity))+
+  geom_smooth(aes(color=color), se = F)+
   theme_clean()
 diamonds_plot
 ```
