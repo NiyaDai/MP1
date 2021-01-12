@@ -194,6 +194,6 @@ text_stats()
 In this assignment, we attempted the following [standards](https://beanumber.github.io/sds192/standards.html):
 
 - `r standard_button("markdown")`: In this assignment, we investigated the variables that affect the value of diamonds. In particular, we used carat, cut, clarity and color as variables to see how they affect the price of diamonds. In terms of data visualization, we used graphs to present the correlations between these variables and the price of diamonds. Therefore, by including necessary content and web elements, and employing the formatting to present the structural effects, we met the Markdown standard.
-- `r standard_button("aesthetics")`: In terms of our data graphics, we firstly used the line chart to represent the correlation between the determinants of the diamonds and the price of the We met the Aesthetics standard because we...
+- `r standard_button("aesthetics")`: In terms of our data graphics, we firstly used the line chart to represent the correlation between the determinants of the diamonds and the price of the diamonds. From the  We met the Aesthetics standard because we...
 
 
