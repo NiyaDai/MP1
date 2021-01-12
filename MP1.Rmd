@@ -34,54 +34,6 @@ As we can see from the first 10 rows of the data, diamond value is characterized
 diamonds
 ```
 
-
-#Box plot 
-```{r}
-diamonds_plot <- ggplot(data=diamonds, aes(x=carat, y=price, fill=cut))+
-  geom_boxplot()+
-  scale_fill_brewer(palette="PuBu")+
-  labs(title="Prices of over 50,000 round cut diamonds
- by carat and cut")+ 
-  scale_x_continuous(name="Weight of diomond (carat)")+
-  scale_y_continuous(name="Price of diamonds (US dollars)")
-diamonds_plot
-```
-```{r}
-```
-
-```{r}
-diamonds_plot + 
-  theme_economist() + 
-  scale_fill_economist()
-```
-#Scatter plot
-```{r}
-
-diamonds_plot <- ggplot(data=diamonds, aes(x=carat, y=price, color=cut))+
-  geom_point(size = 0.5) +
-  scale_color_brewer(palette="PuBuGn") +
-  labs(title="Prices of over 50,000 round cut diamonds
-  by carat and cut") + 
-  facet_wrap(~clarity, ncol=3) +
-  scale_x_continuous(name="Weight of diomond (carat)") +
-  scale_y_continuous(name="Price of diamonds (US dollars)")
-
-diamonds_plot
-```
-
-#Error in cut 
-```{r}
-diamonds_plot <- ggplot(data=diamonds, aes(x=carat, y=price, color=cut))+
-  scale_color_brewer(palette="PuBuGn")+
-  labs(title="Prices of over 50,000 round cut diamonds
- by carat and cut", subtitle="Clarity: from worst (I1) to best (IF)")+ 
-  scale_x_continuous(name="Weight of diomond (carat)")+
-  scale_y_continuous(name="Price of diamonds (US dollars)")+
-  geom_smooth()+
-  facet_wrap(~clarity, ncol=3)
-diamonds_plot
-```
-
 ## Clarity
 As we can see from the graph, the highest clarity characteristic **IF** can fetch the same price as the lowest **I1** at just over 2 carats. We also see that once we step into the **S** category price increase slows down dramatically. We assume that perfect clarity is a very rare characteristic in natural diamonds. 
 ```{r}
@@ -108,78 +60,30 @@ diamonds_plot
 ```
 
 
-# Color
+## Color
 We color coded diamond color to the line color for an intuitive interpretation. In nature, colorless diamonds are the most rare, so their price are higher per carat. However, from this graph, we see that price actually declines with increasing carat for the most colorless stone, while diamond with a faint tint has the best growth potential. We assume this happens since **D-J** are all on the near colorless to colorless scale, it is hard for the human eye to see the difference. When people are evaluating carat for color grade, they may prefer a larger carat than a premium colorless stone. So we see a steady rise for **J** graded diamonds. 
 ```{r}
-diamonds_plot <- ggplot(data=diamonds, aes(x=carat, y=price))+
+diamonds_plot <- ggplot(data=diamonds, aes(x=carat, y=price)) +
   scale_color_brewer(palette="PuBuGn")+
-  labs(title="Prices of over 50,000 round cut diamonds by weight",color="Color from Colorless \nto Near Colorless")+
+  labs(title="Prices of over 50,000 round cut diamonds",
+       subtitle = "Effect of color",
+       color="Color from Colorless to Near Colorless", 
+       xlab(aes(color="white"))) + 
   scale_x_continuous(name="Weight of diomond (carat)")+
   scale_y_continuous(name="Price of diamonds (US dollars)")+
   geom_smooth(aes(color=color), se = F)+
-  theme_clean()
-diamonds_plot
-```
-
-#Gray theme
-```{r}
-diamonds_plot <- ggplot(data=diamonds, aes(x=carat, y=price))+
-  scale_color_brewer(palette="PuBuGn")+
-  labs(title="Prices of over 50,000 round cut diamonds by weight",color="Clarity from worst to best")+
-  scale_x_continuous(name="Weight of diomond (carat)")+
-  scale_y_continuous(name="Price of diamonds (US dollars)")+
-  geom_smooth(aes(color=clarity))+
-  theme_dark()
-diamonds_plot
-```
-
-##Dark theme without grid
-
-```{r}
-diamonds_plot <- ggplot(data=diamonds, aes(x=carat, y=price))+
-  scale_color_brewer(palette="PuBuGn")+
-  labs(title="Prices of over 50,000 round cut diamonds",
-       color="Clarity from worst to best",
-       xlab(aes(color="white")))+ 
-  scale_x_continuous(name="Weight of diomond (carat)")+
-  scale_y_continuous(name="Price of diamonds (US dollars)")+
-  geom_smooth(aes(color=clarity))+
   theme(panel.background = element_rect(fill = "#1C1C1D"),
-        plot.background = element_rect(fill = "#1C1C1D"), 
-        panel.grid =element_line(NA), 
-        axis.title = element_text(color="white"), 
-        plot.title=element_text(color="white"), 
-        legend.background = element_rect(fill = "#434343", color ="#1C1C1D" ), 
-        legend.text = element_text(color = "white"), 
-        legend.title = element_text(color = "white"), 
-        legend.key = element_rect(fill =NA, color=NA), 
-        legend.box.background = element_rect(fill =NA),
-        axis.line = element_line(colour = "#464646")
-  )
-diamonds_plot
-```
-```{r}
-diamonds_plot <- ggplot(data=diamonds, aes(x=carat, y=price))+
-  scale_color_brewer(palette="PuBuGn")+
-  labs(title="Prices of over 50,000 round cut diamonds",color="Clarity from worst to best", xlab(aes(color="white")))+ 
-  scale_x_continuous(name="Weight of diomond (carat)")+
-  scale_y_continuous(name="Price of diamonds (US dollars)")+
-  geom_smooth(aes(color=clarity))+
-  theme(panel.background = element_rect(fill = "#1C1C1D"),
-        plot.background = element_rect(fill = "#1C1C1D"), 
+        plot.background = element_rect(fill = "#1C1C1D"),
         panel.grid =element_line("#464646"), 
         axis.title = element_text(color="white"), 
         plot.title=element_text(color="white"), 
+        plot.subtitle = element_text(color="white"),
         legend.background = element_rect(fill = "#1C1C1D", color ="#1C1C1D" ), 
         legend.text = element_text(color = "white"), 
         legend.title = element_text(color = "white"), 
-        legend.key = element_rect(fill ="black", color="#1C1C1D"), 
-        legend.box.background = element_rect(color = "white"),
-        axis.line = element_line(colour = NA)
-  )
+        legend.key = element_rect(fill ="black", color="#1C1C1D"),
+        legend.box.background = element_rect(color = "white"))
 diamonds_plot
-```
-
 ```
 
 
