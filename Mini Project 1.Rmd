@@ -1,0 +1,198 @@
+---
+title: "SDS 192 Assignment"
+subtitle: "SDS 192"
+author: "Your name"
+date: "`r format(Sys.Date(), '%B %e, %Y')`"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 2
+    toc_float: true
+    fig_width: 7
+    fig_height: 6
+    fig_caption: true
+    theme: lumen
+    df_print: paged
+    code_folding: show
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  echo = TRUE
+)
+library(tidyverse)
+library(sds192)
+```
+
+## Section 1
+#Data Frame 
+```{r}
+diamonds
+```
+```{r}
+library(RColorBrewer)
+display.brewer.all()
+```
+
+#Box plot 
+```{r}
+diamonds_plot <- ggplot(data=diamonds, aes(x=carat, y=price, fill=cut))+
+  geom_boxplot()+
+  scale_fill_brewer(palette="PuBu")+
+  labs(title="Prices of over 50,000 round cut diamonds
+ by carat and cut")+ 
+  scale_x_continuous(name="Weight of diomond (carat)")+
+  scale_y_continuous(name="Price of diamonds (US dollars)")
+diamonds_plot
+```
+```{r}
+```
+
+```{r}
+diamonds_plot + 
+  theme_economist() + 
+  scale_fill_economist()
+```
+#Scatter plot
+```{r}
+
+diamonds_plot <- ggplot(data=diamonds, aes(x=carat, y=price, color=cut))+
+  geom_point(
+             size = 0.5)+
+  scale_color_brewer(palette="PuBuGn")+
+  labs(title="Prices of over 50,000 round cut diamonds
+ by carat and cut")+ 
+  facet_wrap(~clarity, ncol=3)+
+  scale_x_continuous(name="Weight of diomond (carat)")+
+  scale_y_continuous(name="Price of diamonds (US dollars)")
+diamonds_plot
+```
+
+```{r}
+diamonds_plot <- ggplot(data=diamonds, aes(x=carat, y=price))+
+  scale_color_brewer(palette="PuBuGn")+
+  labs(title="Prices of over 50,000 round cut diamonds by carat and cut", 
+       subtitle="Clarity: from worst (I1) to best (IF)")+ 
+  scale_x_continuous(name="Weight of diomond (carat)")+
+  scale_y_continuous(name="Price of diamonds (US dollars)")+
+  geom_smooth()+
+  facet_wrap(~clarity, ncol=3)
+diamonds_plot
+```
+
+#Error with cut 
+```{r}
+diamonds_plot <- ggplot(data=diamonds, aes(x=carat, y=price, color=cut))+
+  scale_color_brewer(palette="PuBuGn")+
+  labs(title="Prices of over 50,000 round cut diamonds by carat and cut", 
+       subtitle="Clarity: from worst (I1) to best (IF)")+ 
+  scale_x_continuous(name="Weight of diomond (carat)")+
+  scale_y_continuous(name="Price of diamonds (US dollars)")+
+  geom_smooth()+
+  facet_wrap(~clarity, ncol=3)
+diamonds_plot
+```
+
+##Dark Theme 1
+```{r}
+diamonds_plot <- ggplot(data=diamonds, aes(x=carat, y=price))+
+  scale_color_brewer(palette="PuBuGn")+
+  labs(title="Prices of over 50,000 round cut diamonds",color="Clarity from worst to best", xlab(aes(color="white")))+ 
+  scale_x_continuous(name="Weight of diomond (carat)")+
+  scale_y_continuous(name="Price of diamonds (US dollars)")+
+  geom_smooth(aes(color=clarity))+
+  theme(panel.background = element_rect(fill = "#1C1C1D"),plot.background = element_rect(fill = "#1C1C1D"), panel.grid =element_line("#464646"), axis.title = element_text(color="white"), plot.title=element_text(color="white"), legend.background = element_rect(fill = "#1C1C1D", color ="#1C1C1D" ), legend.text = element_text(color = "white"), legend.title = element_text(color = "white"), legend.key = element_rect(fill ="black", color="#1C1C1D"), legend.box.background = element_rect(color = "white"))
+diamonds_plot
+```
+
+
+#Light Theme
+```{r}
+diamonds_plot <- ggplot(data=diamonds, aes(x=carat, y=price))+
+  scale_color_brewer(palette="PuBuGn")+
+  labs(title="Prices of over 50,000 round cut diamonds by weight",color="Clarity from worst to best")+
+  scale_x_continuous(name="Weight of diomond (carat)")+
+  scale_y_continuous(name="Price of diamonds (US dollars)")+
+  geom_smooth(aes(color=clarity))
+diamonds_plot
+```
+
+#Gray theme
+```{r}
+diamonds_plot <- ggplot(data=diamonds, aes(x=carat, y=price))+
+  scale_color_brewer(palette="PuBuGn")+
+  labs(
+    title="Prices of over 50,000 round cut diamonds by weight",
+    color="Clarity from worst to best")+
+  scale_x_continuous(name="Weight of diomond (carat)")+
+  scale_y_continuous(name="Price of diamonds (US dollars)")+
+  geom_smooth(aes(color=clarity))+
+  theme_dark()
+diamonds_plot
+```
+
+##Dark theme without grid
+
+```{r}
+diamonds_plot <- ggplot(data=diamonds, aes(x=carat, y=price))+
+  scale_color_brewer(palette="PuBuGn")+
+  labs(title="Prices of over 50,000 round cut diamonds",
+       color="Clarity from worst to best",
+       xlab(aes(color="white")))+ 
+  scale_x_continuous(name="Weight of diomond (carat)")+
+  scale_y_continuous(name="Price of diamonds (US dollars)")+
+  geom_smooth(aes(color=clarity))+
+  theme(panel.background = element_rect(fill = "#1C1C1D"),
+        plot.background = element_rect(fill = "#1C1C1D"), 
+        panel.grid =element_line(NA), 
+        axis.title = element_text(color="white"), 
+        plot.title=element_text(color="white"), 
+        legend.background = element_rect(fill = "#434343", color ="#1C1C1D" ), 
+        legend.text = element_text(color = "white"), 
+        legend.title = element_text(color = "white"), 
+        legend.key = element_rect(fill =NA, color=NA), 
+        legend.box.background = element_rect(fill =NA),
+        axis.line = element_line(colour = "#464646")
+  )
+diamonds_plot
+```
+```{r}
+diamonds_plot <- ggplot(data=diamonds, aes(x=carat, y=price))+
+  scale_color_brewer(palette="PuBuGn")+
+  labs(title="Prices of over 50,000 round cut diamonds",color="Clarity from worst to best", xlab(aes(color="white")))+ 
+  scale_x_continuous(name="Weight of diomond (carat)")+
+  scale_y_continuous(name="Price of diamonds (US dollars)")+
+  geom_smooth(aes(color=clarity))+
+  theme(panel.background = element_rect(fill = "#1C1C1D"),
+        plot.background = element_rect(fill = "#1C1C1D"), 
+        panel.grid =element_line("#464646"), 
+        axis.title = element_text(color="white"), 
+        plot.title=element_text(color="white"), 
+        legend.background = element_rect(fill = "#1C1C1D", color ="#1C1C1D" ), 
+        legend.text = element_text(color = "white"), 
+        legend.title = element_text(color = "white"), 
+        legend.key = element_rect(fill ="black", color="#1C1C1D"), 
+        legend.box.background = element_rect(color = "white"),
+        axis.line = element_line(colour = NA)
+  )
+diamonds_plot
+```
+
+```
+
+
+## Word count
+
+```{r word_count, message=FALSE, echo=FALSE}
+text_stats()
+```
+
+## Standards
+
+In this assignment, we attempted the following [standards](https://beanumber.github.io/sds192/standards.html):
+
+- `r standard_button("markdown")`: We met the Markdown standard because we...
+- `r standard_button("aesthetics")`: We met the Aesthetics standard because we...
+
+
