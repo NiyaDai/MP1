@@ -82,8 +82,7 @@ diamonds_plot <- ggplot(data=diamonds, aes(x=carat, y=price, color = cut)) +
         legend.text = element_text(color = "white"), 
         legend.title = element_text(color = "white"), 
         legend.key = element_rect(fill ="black", color="#1C1C1D"),
-        legend.box.background = element_rect(color = "white")) +
-  facet_wrap(~clarity, ncol = 3)
+        legend.box.background = element_rect(color = "white")) 
 diamonds_plot
 ```
 
