@@ -61,7 +61,7 @@ diamonds_plot
 
 
 ## Color
-We color coded diamond color to the line color for an intuitive interpretation. In nature, colorless diamonds are the most rare, so their price are higher per carat. However, from this graph, we see that price actually declines with increasing carat for the most colorless stone, while diamond with a faint tint has the best growth potential. We assume this happens since **D-J** are all on the near colorless to colorless scale, it is hard for the human eye to see the difference. When people are evaluating carat for color grade, they may prefer a larger carat than a premium colorless stone. So we see a steady rise for **J** graded diamonds. 
+We color coded diamond color to the line color for an intuitive interpretation. In nature, colorless diamonds are the most rare, so their prices are higher per carat. However, from this graph, we see that price actually declines with increasing carat for the most colorless stone, while diamond with a faint tint has the best growth potential. We assume this happens since **D-J** are all on the near colorless to colorless scale, it is hard for the human eye to see the difference. When people are evaluating carat for color grade, they may prefer a larger carat than a premium colorless stone. So we see a steady rise for **J** graded diamonds. 
 ```{r}
 diamonds_plot <- ggplot(data=diamonds, aes(x=carat, y=price, color = cut)) +
   scale_color_brewer(palette="PuBuGn")+
@@ -98,7 +98,5 @@ text_stats()
 
 In this assignment, we attempted the following [standards](https://beanumber.github.io/sds192/standards.html):
 
-- `r standard_button("markdown")`: In this assignment, we investigated the variables that affect the value of diamonds. In particular, we used carat, cut, clarity and color as variables to see how they affect the price of diamonds. In terms of data visualization, we used graphs to present the correlations between these variables and the price of diamonds. Therefore, by including necessary content and web elements, and employing the formatting to present the structural effects, we met the Markdown standard.
-- `r standard_button("aesthetics")`: In terms of our data graphics, we firstly used the line chart to represent the correlation between the determinants of the diamonds and the price of the diamonds. From the  We met the Aesthetics standard because we...
-
-
+- `r standard_button("markdown")`: In this assignment, we investigated the variables that affect the value of diamonds. In particular, we selected clarity and color, and cut as variables to see how they affect the value of diamonds. We used a variety of web elements, for example, data graphics and elements, to present the structural effect of these variables on the price of diamonds. Therefore, by including necessary content and web elements and employing the formatting to present the structural effects, we met the Markdown standard.
+- `r standard_button("aesthetics")`: In terms of our data graphics, we used line charts to showcase the effects of the determinants on the diamonds prices. Because our graphs are two-dimensional, we dropped the effect of cut in our presentation for the reason that the graphs would be clearer with the selected four variables rather than five. In addition, we used different colored lines in the graphs to differentiate color and clarity intensities. Also, sincfe these colored lines are light colors, we used black as the background color and kept white as the word color. Thus, with customized graphics which reflect the underlying data, we met the Aesthetics standard.
