@@ -63,7 +63,7 @@ diamonds_plot
 ## Color
 We color coded diamond color to the line color for an intuitive interpretation. In nature, colorless diamonds are the most rare, so their price are higher per carat. However, from this graph, we see that price actually declines with increasing carat for the most colorless stone, while diamond with a faint tint has the best growth potential. We assume this happens since **D-J** are all on the near colorless to colorless scale, it is hard for the human eye to see the difference. When people are evaluating carat for color grade, they may prefer a larger carat than a premium colorless stone. So we see a steady rise for **J** graded diamonds. 
 ```{r}
-diamonds_plot <- ggplot(data=diamonds, aes(x=carat, y=price)) +
+diamonds_plot <- ggplot(data=diamonds, aes(x=carat, y=price, color = cut)) +
   scale_color_brewer(palette="PuBuGn")+
   labs(title="Prices of over 50,000 round cut diamonds",
        subtitle = "Effect of color",
@@ -82,7 +82,8 @@ diamonds_plot <- ggplot(data=diamonds, aes(x=carat, y=price)) +
         legend.text = element_text(color = "white"), 
         legend.title = element_text(color = "white"), 
         legend.key = element_rect(fill ="black", color="#1C1C1D"),
-        legend.box.background = element_rect(color = "white"))
+        legend.box.background = element_rect(color = "white")) +
+  facet_wrap(~clarity, ncol = 3)
 diamonds_plot
 ```
 
