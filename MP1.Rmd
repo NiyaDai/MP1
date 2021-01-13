@@ -40,6 +40,7 @@ As we can see from the graph, the highest clarity characteristic **IF** can fetc
 diamonds_plot <- ggplot(data=diamonds, aes(x=carat, y=price)) +
   scale_color_brewer(palette="PuBuGn")+
   labs(title="Prices of over 50,000 round cut diamonds",
+       subtitle = "Effect of clarity on price of diamonds at each weight. Clarity (from worst to best) is represented by different colors.",
        color="Clarity from worst to best", 
        xlab(aes(color="white"))) + 
   scale_x_continuous(name="Weight of diomond (carat)")+
@@ -66,7 +67,7 @@ We color coded diamond color to the line color for an intuitive interpretation. 
 diamonds_plot <- ggplot(data=diamonds, aes(x=carat, y=price, color = cut)) +
   scale_color_brewer(palette="PuBuGn")+
   labs(title="Prices of over 50,000 round cut diamonds",
-       subtitle = "Effect of color",
+       subtitle = "Effect of color on price of diamonds at each weight. According to jewelry retailer Blue Nile, the color grade is arranged from Colorless (D, E, and F) to Near-Colorless (G, H, I, J). Near-Colorless diamonds contain small traces of color, but can’t be seen very easily with the naked eye.",
        color="Color from Colorless to Near Colorless", 
        xlab(aes(color="white"))) + 
   scale_x_continuous(name="Weight of diomond (carat)")+
