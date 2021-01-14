@@ -68,7 +68,7 @@ diamonds_plot <- ggplot(data=diamonds, aes(x=carat, y=price, color = cut)) +
   scale_color_brewer(palette="PuBuGn")+
   labs(title="Prices of over 50,000 round cut diamonds",
        subtitle = "Effect of color on price of diamonds at each weight.",
-       caption = "According to jewelry retailer Blue Nile, the color grade is arranged from Colorless (D, E, and F) to Near-Colorless (G, H, I, J). Near-Colorless diamonds contain small traces of color, but can’t be seen very easily with the naked eye.",
+       caption = "According to jewelry retailer Blue Nile, the color grade is \narranged from Colorless (D, E, and F) to Near-Colorless (G, H, I, J).\n Near-Colorless diamonds contain small traces of \ncolor, but can’t be seen very easily with the naked eye.",
        color="Color from Colorless to Near Colorless", 
        xlab(aes(color="white"))) + 
   scale_x_continuous(name="Weight of diomond (carat)")+
@@ -88,7 +88,7 @@ diamonds_plot <- ggplot(data=diamonds, aes(x=carat, y=price, color = cut)) +
         legend.box.background = element_rect(color = "white")) 
 diamonds_plot
 ```
-
+??gg
 
 ## Word count
 
