@@ -46,6 +46,7 @@ diamonds_plot <- ggplot(data=diamonds, aes(x=carat, y=price)) +
   scale_x_continuous(name="Weight of diomond (carat)")+
   scale_y_continuous(name="Price of diamonds (US dollars)")+
   geom_smooth(aes(color=clarity), se = F)+
+  geom_hline(yintercept = 15000, linetype="dashed",size=1, alpha=0.8)+
   theme(panel.background = element_rect(fill = "#1C1C1D"),
         plot.background = element_rect(fill = "#1C1C1D"),
         panel.grid =element_line("#464646"), 
